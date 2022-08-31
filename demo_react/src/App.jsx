@@ -1,19 +1,39 @@
 import React from 'react';
+import { useState } from 'react';
+import ColorFulMessage from './components/ColorfulMessage';
 
 const App = () => {
 
-    const onClickButton = () => alert();
+    const [num, setNum] = useState(0);
+    const [faceShowFlag, setFaceShowFlag] = useState(false);
 
-    const contentStyle = {
-        color: 'blue',
-        fontSize: '18px'
+    const onClickCountUp = () => {
+        setNum(num + 1);
+    }
+
+    const onClickSwitchShowFlag = () => {
+        setFaceShowFlag(!faceShowFlag);
     };
+
+    if (num > 0) {
+        if (num % 3 === 0) {
+            faceShowFlag || setFaceShowFlag(true);
+        } else {
+            faceShowFlag && setFaceShowFlag(false);
+        }
+    }
+
 
     return (
         <>
             <h1 style={{ color: 'red' }}>こんにちは！</h1>
-            <p style={contentStyle}>お元気ですか？</p>
-            <button onClick={onClickButton}>ボタン</button>
+            <ColorFulMessage color="blue" text="お元気ですかあああ" />
+            <ColorFulMessage color="pink" text="元気ですううううう" />
+            <button onClick={onClickCountUp}>カウントアップ</button>
+            <p>{num}</p>
+            <br />
+            <button onClick={onClickSwitchShowFlag}>on/off</button>
+            {faceShowFlag && <p>😂</p>}
         </>
     );
 };
