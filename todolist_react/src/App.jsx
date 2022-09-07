@@ -50,7 +50,10 @@ function App() {
 
   return (
     <>
-      <InputTodo todoText={todoText} onChange={onChangeTodoText} onClick={onClickAdd} />
+      <InputTodo todoText={todoText} onChange={onChangeTodoText} onClick={onClickAdd} disabled={incompleteTodos.length >= 5}/>
+      {incompleteTodos.length >= 5 && (
+        <p style={{ color: 'red' }}>登録できるtodoは5個までです。消化してください。</p>
+      )}
       <InCompleteTodos todos={incompleteTodos} uuidv4={uuidv4} onClickComplete={onClickComplete} onClickDelete={onClickDelete}/>
       <CompleteTodos completeTodos={completeTodos} onClickBack={onClickBack} />
     </>
